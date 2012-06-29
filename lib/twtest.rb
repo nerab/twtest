@@ -1,7 +1,7 @@
-require 'test/unit'
-
 require "twtest/version"
 require "twtest/testcase"
+
+require 'tempfile'
 
 module TaskWarrior
   module Test
