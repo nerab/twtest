@@ -20,10 +20,10 @@ module TaskWarrior
       
       protected
         def export_tasks
-          JSON[exec('export')]
+          JSON[task('export')]
         end
   
-        def exec(cmd)
+        def task(cmd)
           ENV['TASKRC'] = @taskrc_file
           %x[task #{cmd}]
         end

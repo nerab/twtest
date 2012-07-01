@@ -6,7 +6,7 @@ class TestTestCase < TaskWarrior::Test::Integration::TestCase
     # assert_empty(export_tasks)
     
     # Use a placeholder as workaround
-    exec("add placeholder")
+    task("add placeholder")
     assert_equal(1, export_tasks.size)
   end
   
@@ -19,8 +19,8 @@ class TestTestCase < TaskWarrior::Test::Integration::TestCase
       input_file.close
       
       # TODO Replace temp file with in-process version
-#      exec("import <(echo '#{contents.to_json}')")
-      exec("import #{input_file.path}")
+#     task("import <(echo '#{contents.to_json}')")
+      task("import #{input_file.path}")
       
       tasks = export_tasks
       assert_equal(1, tasks.size)
