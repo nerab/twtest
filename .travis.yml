@@ -9,6 +9,6 @@ before_script:
  - task count
 
 before_install:
- - sudo add-apt-repository ppa:ultrafredde/ppa
+ - echo | sudo add-apt-repository ppa:ultrafredde/ppa
  - sudo apt-get update
  - sudo apt-get install task
