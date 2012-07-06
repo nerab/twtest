@@ -20,7 +20,7 @@ Or install it yourself as:
 
 ## Usage
 
-Have a look at the [example](test/unit/test_example.rb).
+Have a look at the [example](/nerab/twtest/blob/master/test/unit/test_example.rb).
 
 ## Contributing
 
