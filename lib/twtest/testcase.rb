@@ -9,23 +9,28 @@ module TaskWarrior
     module Integration
       class TestCase < ::Test::Unit::TestCase
         def setup
+          assert(task_command_available?, "The TaskWarrior binary '#{TASK}' was not found or is not executable.")
           @data_dir = Dir.mktmpdir
           @taskrc_file = build_taskrc(:data_dir => @data_dir)
         end
 
         def teardown
-          FileUtils.rm_r(@data_dir)
-          File.delete(@taskrc_file)
+          FileUtils.rm_r(@data_dir) if @data_dir && Dir.exist?(@data_dir)
+          File.delete(@taskrc_file) if @taskrc_file && File.exist?(@taskrc_file)
         end
       
       protected
+        def task_command_available?
+          !%x[type -t #{TASK}].chomp.empty?
+        end
+
         def export_tasks
           JSON[task('export')]
         end
   
         def task(cmd)
           ENV['TASKRC'] = @taskrc_file
-          %x[task #{cmd}]
+          %x[#{TASK} #{cmd}]
         end
   
         def build_taskrc(options = {})
@@ -38,7 +43,10 @@ module TaskWarrior
           ensure
             taskrc_file.close
           end
-        end        
+        end
+
+      private
+        TASK = 'task'
       end
     end
   end
