@@ -10,7 +10,7 @@ module TaskWarrior
     module Integration
       class TestCase < ::Test::Unit::TestCase
         def setup
-          assert(task_command_available?, "The TaskWarrior binary '#{TASK}' was not found or is not executable.")
+#          assert(task_command_available?, "The TaskWarrior binary '#{TASK}' was not found or is not executable.")
           @data_dir = Dir.mktmpdir
           @taskrc_file = build_taskrc(:data_dir => @data_dir)
         end
