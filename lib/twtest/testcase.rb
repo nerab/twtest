@@ -21,7 +21,8 @@ module TaskWarrior
       
       protected
         def task_command_available?
-          !%x[type -t #{TASK}].chomp.empty?
+          result = %x[type -t #{TASK}]
+          result.nil? ? false : !result.chomp.empty?
         end
 
         def export_tasks

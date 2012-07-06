@@ -2,6 +2,8 @@
 
 Helpers for writing TaskWarrior tests in Ruby
 
+[![Build Status](https://secure.travis-ci.org/nerab/twtest.png?branch=master)](http://travis-ci.org/nerab/twtest)
+
 ## Installation
 
 Add this line to your application's Gemfile:
