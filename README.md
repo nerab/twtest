@@ -1,6 +1,6 @@
 # twtest
 
-Helpers for writing TaskWarrior tests in Ruby
+Helpers for writing [TaskWarrior](http://taskwarrior.org/) tests in Ruby. It isolates tests by running TaskWarrior tests in their own data directory, independent from any default data directory you may have on your workstation.
 
 [![Build Status](https://secure.travis-ci.org/nerab/twtest.png?branch=master)](http://travis-ci.org/nerab/twtest)
 
@@ -20,7 +20,7 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+Have a look at the [example](test/unit/test_example.rb).
 
 ## Contributing
 

@@ -3,6 +3,7 @@ require 'test/unit'
 require 'tmpdir'
 require 'erb'
 require 'json'
+require 'shellwords'
 
 module TaskWarrior
   module Test
@@ -25,13 +26,24 @@ module TaskWarrior
           result.nil? ? false : !result.chomp.empty?
         end
 
-        def export_tasks
-          JSON[task('export')]
+        def export_tasks(args = {})
+          json = task('export', args)
+          raise "Empty JSON returned by task command" if json.nil? || json.empty?
+          JSON[json]
         end
   
-        def task(cmd)
+        def task(cmd, args = {})
           ENV['TASKRC'] = @taskrc_file
-          %x[#{TASK} #{cmd}]
+          %x[#{build_line(cmd, args)}]
+        end
+
+        def build_line(cmd, args = {})
+          [].tap{|line|
+            line << TASK
+            line << args.map{|k,v| "#{Shellwords.escape(k.strip)}=#{Shellwords.escape(v.strip)}"}.join(' ')
+            line << cmd.strip
+            line.reject!{|part| part.empty?}
+          }.join(' ')
         end
   
         def build_taskrc(options = {})
