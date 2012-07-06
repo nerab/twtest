@@ -10,8 +10,7 @@ module TaskWarrior
     module Integration
       class TestCase < ::Test::Unit::TestCase
         def setup
-          assert(task_command_available?, "The TaskWarrior binary '#{TASK}' was not found or is not executable.")
-          assert(task('_version') =~ /2\.\d\.\d/, "The TaskWarrior binary '#{TASK}' must be at least v2.0.")
+          assert(task('_version') =~ /2\.\d\.\d/, "The TaskWarrior binary '#{TASK}' must be available and at least v2.0.")
           @data_dir = Dir.mktmpdir
           @taskrc_file = build_taskrc(:data_dir => @data_dir)
         end
@@ -22,11 +21,6 @@ module TaskWarrior
         end
       
       protected
-        def task_command_available?
-          %x[hash #{TASK}]
-          $?.success?
-        end
-
         def export_tasks(args = {})
           json = task('export', args)
           raise "Empty JSON returned by task command" if json.nil? || json.empty?
