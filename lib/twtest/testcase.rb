@@ -10,7 +10,7 @@ module TaskWarrior
     module Integration
       class TestCase < ::Test::Unit::TestCase
         def setup
-          assert(task('_version') =~ /2\.\d\.\d/, "The TaskWarrior binary '#{TASK}' must be available and at least v2.0.")
+          assert(task('--version') =~ /2\.\d\.\d/, "The TaskWarrior binary '#{TASK}' must be available and at least v2.0.")
           @data_dir = Dir.mktmpdir
           @taskrc_file = build_taskrc(:data_dir => @data_dir)
         end
