@@ -1,10 +1,3 @@
-require 'test/unit'
-
-require 'tmpdir'
-require 'erb'
-require 'json'
-require 'shellwords'
-
 module TaskWarrior
   module Test
     module Integration
@@ -24,7 +17,7 @@ module TaskWarrior
         def export_tasks(args = {})
           json = task('export', args)
           raise "Empty JSON returned by task command" if json.nil? || json.empty?
-          JSON[json]
+          MultiJson.load(json)
         end
   
         def task(cmd, args = {})

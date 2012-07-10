@@ -15,11 +15,11 @@ class TestTestCase < TaskWarrior::Test::Integration::TestCase
     input_file = Tempfile.new('test_simple')
     
     begin
-      input_file.write(contents.to_json)
+      input_file.write(MultiJson.dump(contents))
       input_file.close
       
       # TODO Replace temp file with in-process version
-#     task("import <(echo '#{contents.to_json}')")
+#     task("import <(echo '#{MultiJson.dump(contents)}')")
       task("import #{input_file.path}")
       
       tasks = export_tasks

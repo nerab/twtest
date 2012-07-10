@@ -14,6 +14,7 @@ Gem::Specification.new do |gem|
   gem.require_paths = ["lib"]
   gem.version       = TaskWarrior::Test::Integration::VERSION
 
+  gem.add_development_dependency 'multi_json', '~> 1.3'
   gem.add_development_dependency 'guard-test', '~> 0.5'
   gem.add_development_dependency 'guard-bundler', '~> 1.0'
   gem.add_development_dependency 'rake', '~> 0.9'
