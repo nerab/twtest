@@ -29,3 +29,11 @@ Have a look at the [example](/nerab/twtest/blob/master/test/unit/test_example.rb
 3. Commit your changes (`git commit -am 'Added some feature'`)
 4. Push to the branch (`git push origin my-new-feature`)
 5. Create new Pull Request
+
+## Development
+
+If you hack on a project and find the need to use a custom version of `twtest`, configure *your* project to prefer a local git clone over the gem:
+
+```bash
+bundle config local.twtest ../twtest
+```

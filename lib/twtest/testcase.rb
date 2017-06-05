@@ -1,7 +1,15 @@
+require 'json'
+
 module TaskWarrior
   module Test
     module Integration
       class TestCase < ::Test::Unit::TestCase
+        def initialize(*args)
+          super
+          @taskrc_file = nil
+          @data_dir = nil
+        end
+
         def setup
           assert(task('--version') =~ /2\.\d\.\d/, "The TaskWarrior binary '#{TASK}' must be available and at least v2.0.")
           @data_dir = Dir.mktmpdir
@@ -12,14 +20,14 @@ module TaskWarrior
           FileUtils.rm_r(@data_dir) if @data_dir && Dir.exist?(@data_dir)
           File.delete(@taskrc_file) if @taskrc_file && File.exist?(@taskrc_file)
         end
-      
+
       protected
         def export_tasks(args = {})
           json = task('export', args)
           raise "Empty JSON returned by task command" if json.nil? || json.empty?
-          MultiJson.load(json)
+          JSON.parse(json)
         end
-  
+
         def task(cmd, args = {})
           ENV['TASKRC'] = @taskrc_file
           %x[#{build_line(cmd, args)}]
@@ -33,16 +41,16 @@ module TaskWarrior
             line.reject!{|part| part.empty?}
           }.join(' ')
         end
-  
+
         def build_taskrc(options = {})
-          taskrc_file = Tempfile.new('taskrc')
+          taskrc = Tempfile.new('taskrc')
           data_dir = options[:data_dir]
-    
+
           begin
-            taskrc_file.write(ERB.new(File.read(File.join(File.dirname(__FILE__), '..', '..', 'templates', 'taskrc.erb')), 0, "%<>").result(binding))
-            return taskrc_file.path
+            taskrc.write(ERB.new(File.read(File.join(File.dirname(__FILE__), '..', '..', 'templates', 'taskrc.erb')), 0, "%<>").result(binding))
+            return taskrc.path
           ensure
-            taskrc_file.close
+            taskrc.close
           end
         end
 

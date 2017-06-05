@@ -3,7 +3,6 @@ require 'tmpdir'
 require 'erb'
 require 'shellwords'
 require 'tempfile'
-require 'multi_json'
 
 require "twtest/version"
 require "twtest/testcase"
