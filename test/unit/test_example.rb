@@ -1,7 +1,9 @@
+# frozen_string_literal: true
+
 require 'twtest'
 
 class ExampleTest < TaskWarrior::Test::Integration::TestCase
-  GTD = "get things done"
+  GTD = 'get things done'
 
   def test_empty
     task("add #{GTD}")
