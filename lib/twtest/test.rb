@@ -5,7 +5,7 @@ require 'json'
 module TaskWarrior
   module Test
     module Integration
-      class TestCase < ::Test::Unit::TestCase
+      class Test < MiniTest::Test
         def initialize(*args)
           super
           @taskrc_file = nil
@@ -47,7 +47,7 @@ module TaskWarrior
 
         def build_taskrc(options={})
           taskrc = Tempfile.new('taskrc')
-          data_dir = options[:data_dir]
+          @data_dir = options[:data_dir]
 
           begin
             taskrc.write(ERB.new(File.read(File.join(File.dirname(__FILE__), '..', '..', 'templates', 'taskrc.erb')), 0, '%<>').result(binding))

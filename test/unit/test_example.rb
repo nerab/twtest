@@ -2,7 +2,7 @@
 
 require 'twtest'
 
-class ExampleTest < TaskWarrior::Test::Integration::TestCase
+class ExampleTest < TaskWarrior::Test::Integration::Test
   GTD = 'get things done'
 
   def test_empty

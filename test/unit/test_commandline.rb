@@ -2,7 +2,7 @@
 
 require 'test_helper'
 
-class TestCommandLine < TaskWarrior::Test::Integration::TestCase
+class TestCommandLine < TaskWarrior::Test::Integration::Test
   def test_plain
     assert_equal('task foo', build_line('foo'))
   end

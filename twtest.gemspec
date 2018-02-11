@@ -1,4 +1,3 @@
-# -*- encoding: utf-8 -*-
 # frozen_string_literal: true
 
 require File.expand_path('../lib/twtest/version', __FILE__)
@@ -16,8 +15,10 @@ Gem::Specification.new do |gem|
   gem.require_paths = ['lib']
   gem.version       = TaskWarrior::Test::Integration::VERSION
 
-  gem.add_development_dependency 'guard-test'
+  gem.add_dependency 'minitest'
+
   gem.add_development_dependency 'guard-bundler'
+  gem.add_development_dependency 'guard-minitest'
   gem.add_development_dependency 'rake'
   gem.add_development_dependency 'rubocop'
 end

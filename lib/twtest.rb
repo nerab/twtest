@@ -1,13 +1,13 @@
 # frozen_string_literal: true
 
-require 'test/unit'
+require 'minitest'
 require 'tmpdir'
 require 'erb'
 require 'shellwords'
 require 'tempfile'
 
 require 'twtest/version'
-require 'twtest/testcase'
+require 'twtest/test'
 
 module TaskWarrior
   module Test

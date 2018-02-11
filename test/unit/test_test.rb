@@ -3,10 +3,9 @@
 require 'test_helper'
 require 'json'
 
-class TestTestCase < TaskWarrior::Test::Integration::TestCase
+class TestTest < TaskWarrior::Test::Integration::Test
   def test_empty
-    # http://taskwarrior.org/issues/1017
-    # assert_empty(export_tasks)
+    assert_empty(export_tasks)
 
     # Use a placeholder as workaround
     task('add placeholder')

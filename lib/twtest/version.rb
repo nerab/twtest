@@ -3,7 +3,7 @@
 module TaskWarrior
   module Test
     module Integration
-      VERSION = '0.0.7'
+      VERSION = '1.0.0'
     end
   end
 end
