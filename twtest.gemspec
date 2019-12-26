@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+require 'English'
 require File.expand_path('lib/twtest/version', __dir__)
 
 Gem::Specification.new do |gem|

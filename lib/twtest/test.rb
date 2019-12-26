@@ -50,7 +50,7 @@ module TaskWarrior
           @data_dir = options[:data_dir]
 
           begin
-            taskrc.write(ERB.new(File.read(File.join(File.dirname(__FILE__), '..', '..', 'templates', 'taskrc.erb')), 0, '%<>').result(binding))
+            taskrc.write(ERB.new(File.read(File.join(File.dirname(__FILE__), '..', '..', 'templates', 'taskrc.erb'))).result(binding))
             return taskrc.path
           ensure
             taskrc.close
